@@ -71,6 +71,9 @@
       <PackageReference Include="MvvmCross">
         <Version>6.3.1</Version>
       </PackageReference>
+      <PackageReference Include="MvvmCross.Plugin.Color">
+        <Version>6.3.1</Version>
+      </PackageReference>
     </ItemGroup>
     <ItemGroup>
         <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -115,16 +118,23 @@
         <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png">
             <Visible>false</Visible>
         </ImageAsset>
+        <ImageAsset Include="Resources\Images\ImageFiles.xcassets\Contents.json" />
+        <ImageAsset Include="Resources\Images\ImageFiles.xcassets\SettingsButton.imageset\Contents.json" />
+        <ImageAsset Include="Resources\Images\ImageFiles.xcassets\SettingsButton.imageset\icons8-settings-24.png" />
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Resources\" />
         <Folder Include="Views\" />
+        <Folder Include="Resources\Images\" />
+        <Folder Include="Resources\Images\ImageFiles.xcassets\SettingsButton.imageset\" />
+        <Folder Include="Extensions\" />
     </ItemGroup>
     <ItemGroup>
         <InterfaceDefinition Include="LaunchScreen.storyboard" />
         <InterfaceDefinition Include="Main.storyboard" />
         <InterfaceDefinition Include="Views\MainView.xib" />
         <InterfaceDefinition Include="Views\BaseView.xib" />
+        <InterfaceDefinition Include="Views\SettingsView.xib" />
     </ItemGroup>
     <ItemGroup>
         <None Include="Info.plist" />
@@ -142,7 +152,11 @@
           <DependentUpon>BaseView.cs</DependentUpon>
         </Compile>
         <Compile Include="Setup.cs" />
+        <Compile Include="Extensions\UIViewExtensions.cs" />
         <Compile Include="Views\SettingsView.cs" />
+        <Compile Include="Views\SettingsView.designer.cs">
+          <DependentUpon>SettingsView.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\NotiOSApp.Core\NotiOSApp.Core.csproj">

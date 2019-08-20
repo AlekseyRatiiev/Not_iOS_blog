@@ -1,4 +1,5 @@
 ﻿using Foundation;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Views;
 using NotiOSApp.Core.ViewModels;
 using System;
@@ -8,8 +9,14 @@ using UIKit;
 namespace NotiOSApp.iOS.Views
 {
     public partial class BaseView<TViewModel>
-        : MvxViewController where TViewModel :BaseViewModel
+        : MvxViewController where TViewModel : BaseViewModel
     {
+        #region Private fields
+
+        private bool _settingsButtonVisibility;
+        private UIBarButtonItem settingsButton;
+
+        #endregion
 
         #region Constructors
 
@@ -28,12 +35,33 @@ namespace NotiOSApp.iOS.Views
             set { base.ViewModel = value; }
         }
 
+        public bool SettingsButtonVisibility
+        {
+            get => _settingsButtonVisibility;
+            set
+            {
+                if (value)
+                    NavigationItem.SetRightBarButtonItem(settingsButton, false);
+                else
+                    NavigationItem.SetRightBarButtonItem(null, true);
+
+                _settingsButtonVisibility = value;
+            }
+        }
+
         #endregion
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
+
+            settingsButton = new UIBarButtonItem();
+
+            var set = this.CreateBindingSet<BaseView<TViewModel>, BaseViewModel>();
+            set.Bind(settingsButton)
+                .To(vm => vm.SettingsButtonClickedCommand).OneWay();
+            set.Apply();
 
             SetViewStyles();
         }
@@ -55,7 +83,17 @@ namespace NotiOSApp.iOS.Views
             {
                 TextColor = UIColor.White
             });
+
+            SetSettingsButtonStyles();
         }
+
+        protected virtual void SetSettingsButtonStyles()
+        {
+            settingsButton.Image = UIImage.FromBundle("SettingsButton");
+            settingsButton.TintColor = UIColor.White;
+            SettingsButtonVisibility = true;
+        }
+
         #endregion
     }
 }

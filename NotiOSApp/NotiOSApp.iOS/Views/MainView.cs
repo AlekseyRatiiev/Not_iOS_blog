@@ -16,6 +16,7 @@ namespace NotiOSApp.iOS.Views
         {
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
+            SettingsButtonVisibility = true;
 
             var set = this.CreateBindingSet<MainView, MainViewModel>();
             set.Bind(this)

@@ -10,6 +10,8 @@
   <ItemGroup>
     <Folder Include="ViewModels\" />
     <Folder Include="Resources\" />
+    <Folder Include="Theme\" />
+    <Folder Include="Theme\Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\AppStrings.resx">
