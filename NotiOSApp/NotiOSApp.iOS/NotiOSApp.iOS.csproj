@@ -128,13 +128,15 @@
         <Folder Include="Resources\Images\" />
         <Folder Include="Resources\Images\ImageFiles.xcassets\SettingsButton.imageset\" />
         <Folder Include="Extensions\" />
+        <Folder Include="Views\Base\" />
+        <Folder Include="Views\SettingsScreen\" />
     </ItemGroup>
     <ItemGroup>
         <InterfaceDefinition Include="LaunchScreen.storyboard" />
         <InterfaceDefinition Include="Main.storyboard" />
         <InterfaceDefinition Include="Views\MainView.xib" />
-        <InterfaceDefinition Include="Views\BaseView.xib" />
         <InterfaceDefinition Include="Views\SettingsView.xib" />
+        <InterfaceDefinition Include="Views\SettingsScreen\SettingsView.storyboard" />
     </ItemGroup>
     <ItemGroup>
         <None Include="Info.plist" />
@@ -147,15 +149,13 @@
         <Compile Include="Views\MainView.designer.cs">
           <DependentUpon>MainView.cs</DependentUpon>
         </Compile>
-        <Compile Include="Views\BaseView.cs" />
-        <Compile Include="Views\BaseView.designer.cs">
-          <DependentUpon>BaseView.cs</DependentUpon>
-        </Compile>
         <Compile Include="Setup.cs" />
         <Compile Include="Extensions\UIViewExtensions.cs" />
-        <Compile Include="Views\SettingsView.cs" />
-        <Compile Include="Views\SettingsView.designer.cs">
-          <DependentUpon>SettingsView.cs</DependentUpon>
+        <Compile Include="Views\Base\BaseView.cs" />
+        <Compile Include="Views\Base\BaseTableViewController.cs" />
+        <Compile Include="Views\SettingsScreen\SettingsTableViewController.cs" />
+        <Compile Include="Views\SettingsScreen\SettingsTableViewController.designer.cs">
+          <DependentUpon>SettingsTableViewController.cs</DependentUpon>
         </Compile>
     </ItemGroup>
     <ItemGroup>

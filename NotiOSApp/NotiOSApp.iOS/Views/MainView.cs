@@ -1,5 +1,7 @@
 ﻿using MvvmCross.Binding.BindingContext;
 using NotiOSApp.Core.ViewModels;
+using NotiOSApp.iOS.Extensions;
+using NotiOSApp.iOS.Views.Base;
 using System;
 
 using UIKit;
@@ -29,6 +31,17 @@ namespace NotiOSApp.iOS.Views
         {
             base.DidReceiveMemoryWarning();
             // Release any cached data, images, etc that aren't in use.
+        }
+
+        public override void ViewDidLayoutSubviews()
+        {
+            View.SetGradientBackground(CurrentTheme.GradientOptions);
+        }
+
+        public override void SetViewStyles()
+        {
+            base.SetViewStyles();
+            View.SetGradientBackground(CurrentTheme.GradientOptions);
         }
     }
 }

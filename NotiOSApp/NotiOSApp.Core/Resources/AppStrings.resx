@@ -16,4 +16,8 @@
     <data name="MainViewTitle" xml:space="preserve">
         <value>Not iOS App</value>
     </data>
+    
+    <data name="DarkThemeName" xml:space="preserve">
+        <value>DarkTheme</value>
+    </data>
 </root>

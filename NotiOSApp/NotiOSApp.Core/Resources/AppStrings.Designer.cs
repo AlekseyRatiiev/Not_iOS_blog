@@ -52,5 +52,11 @@ namespace NotiOSApp.Core.Resources {
                 return ResourceManager.GetString("MainViewTitle", resourceCulture);
             }
         }
+        
+        internal static string DarkThemeName {
+            get {
+                return ResourceManager.GetString("DarkThemeName", resourceCulture);
+            }
+        }
     }
 }

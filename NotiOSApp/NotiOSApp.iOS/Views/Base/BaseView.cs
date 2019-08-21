@@ -1,12 +1,13 @@
 ﻿using Foundation;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Views;
+using NotiOSApp.Core.Theme.Interfaces;
 using NotiOSApp.Core.ViewModels;
 using System;
 
 using UIKit;
 
-namespace NotiOSApp.iOS.Views
+namespace NotiOSApp.iOS.Views.Base
 {
     public partial class BaseView<TViewModel>
         : MvxViewController where TViewModel : BaseViewModel
@@ -15,6 +16,7 @@ namespace NotiOSApp.iOS.Views
 
         private bool _settingsButtonVisibility;
         private UIBarButtonItem settingsButton;
+        private ITheme currentTheme;
 
         #endregion
 
@@ -22,6 +24,10 @@ namespace NotiOSApp.iOS.Views
 
         public BaseView(string nibName, NSBundle bundle)
             : base(nibName, bundle)
+        {
+        }
+
+        public BaseView(IntPtr handle) : base(handle)
         {
         }
 
@@ -49,6 +55,16 @@ namespace NotiOSApp.iOS.Views
             }
         }
 
+        public ITheme CurrentTheme
+        {
+            get => currentTheme;
+            set
+            {
+                currentTheme = value;
+                SetViewStyles();
+            }
+        }
+
         #endregion
 
         public override void ViewDidLoad()
@@ -61,6 +77,9 @@ namespace NotiOSApp.iOS.Views
             var set = this.CreateBindingSet<BaseView<TViewModel>, BaseViewModel>();
             set.Bind(settingsButton)
                 .To(vm => vm.SettingsButtonClickedCommand).OneWay();
+            set.Bind(this)
+                .For(v => v.CurrentTheme)
+                .To(vm => vm.ThemeService.CurrentTheme).OneWay();
             set.Apply();
 
             SetViewStyles();
